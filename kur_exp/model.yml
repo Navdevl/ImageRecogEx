@@ -1,0 +1,22 @@
+model:
+        - input: images
+        - dense: 128
+        - activation: tanh
+        - dense: 1
+        - activation: tanh
+          name: labels
+train:
+        data:
+                - pickle: data.pkl
+        epochs: 10
+        weights: best.w
+
+evaluate:
+        data:
+                - pickle: evaluate.pkl
+        weights: best.w
+        destination: output.pkl
+
+loss:
+        - target: labels
+          name: mean_squared_error
